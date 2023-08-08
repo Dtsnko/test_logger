@@ -18,7 +18,7 @@ func main() {
 	}
 	defer cl.Close()
 	for {
-		err = cl.Rabbit().CreateAction(1, 14, 14, "").One(10, []byte("")).SendContext(context.Background())
+		err = cl.Rabbit().CreateAction(1, 14, 10454, "").One(10, []byte(`{"hello":"hello"}`)).SendContext(context.Background())
 		if err != nil {
 			log.Fatal(err.Error())
 		}
@@ -26,9 +26,9 @@ func main() {
 		err = cl.Rabbit().UpdateAction(
 			1,
 			14,
-			14,
+			10454,
 			"",
-		).Many([]int{10, 15, 20, 10}, [][]byte{[]byte(""), []byte("s"), []byte("super")}).SendContext(context.Background())
+		).Many([]int{10, 15, 20}, [][]byte{[]byte(`{"hello":"hello"}`), []byte(`{"hello":"hello"}`), []byte(`{"hello":"hello"}`)}).SendContext(context.Background())
 		if err != nil {
 			log.Fatal(err.Error())
 		}
